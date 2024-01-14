@@ -1,0 +1,35 @@
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: cip-svc
+  labels:
+    name: my-rs
+    type: frontend
+spec:
+  type: ClusterIP
+  selector:
+      name: my-rs
+      type: frontend
+  ports:
+   - port: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: np-svc
+  labels:
+    name: my-rs
+    type: frontend
+spec:
+  type: NodePort
+  selector:
+      name: my-rs
+      type: frontend
+  ports:
+   - port: 80
+     nodePort: 30000
+
+
